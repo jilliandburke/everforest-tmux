@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 
-SELECTED_THEME="$(tmux show-option -gv @tokyo-night-tmux_theme)"
+SELECTED_THEME="$(tmux show-option -gv @everforest-tmux_theme)"
 
 case $SELECTED_THEME in
-"storm")
+"medium")
   declare -A THEME=(
-    ["background"]="#24283b"
-    ["foreground"]="#a9b1d6"
+    ["background"]="#323d43"
+    ["foreground"]="#d8caac"
     ["black"]="#414868"
-    ["blue"]="#7aa2f7"
-    ["cyan"]="#7dcfff"
-    ["green"]="#73daca"
-    ["magenta"]="#bb9af7"
+    ["blue"]="#83b6af"
+    ["cyan"]="#87c095"
+    ["green"]="#a7c080"
+    ["magenta"]="#d39bb6"
     ["red"]="#f7768e"
     ["white"]="#a9b1d6"
     ["yellow"]="#e0af68"
 
     ["bblack"]="#414868"
-    ["bblue"]="#7aa2f7"
-    ["bcyan"]="#7dcfff"
-    ["bgreen"]="#41a6b5"
+    ["bblue"]="#3a515d"
+    ["bcyan"]="#543a48"
+    ["bgreen"]="#425047"
     ["bmagenta"]="#bb9af7"
-    ["bred"]="#f7768e"
+    ["bred"]="#514045"
     ["bwhite"]="#787c99"
-    ["byellow"]="#e0af68"
+    ["byellow"]="#4d4c43"
   )
   ;;
 
@@ -54,25 +54,25 @@ case $SELECTED_THEME in
 *)
   # Default to night theme
   declare -A THEME=(
-    ["background"]="#1A1B26"
-    ["foreground"]="#a9b1d6"
+    ["background"]="#323d43"
+    ["foreground"]="#d8caac"
     ["black"]="#414868"
-    ["blue"]="#7aa2f7"
-    ["cyan"]="#7dcfff"
-    ["green"]="#73daca"
-    ["magenta"]="#bb9af7"
+    ["blue"]="#83b6af"
+    ["cyan"]="#87c095"
+    ["green"]="#a7c080"
+    ["magenta"]="#d39bb6"
     ["red"]="#f7768e"
-    ["white"]="#c0caf5"
+    ["white"]="#a9b1d6"
     ["yellow"]="#e0af68"
 
-    ["bblack"]="#2A2F41"
-    ["bblue"]="#7aa2f7"
-    ["bcyan"]="#7dcfff"
-    ["bgreen"]="#41a6b5"
+    ["bblack"]="#414868"
+    ["bblue"]="#3a515d"
+    ["bcyan"]="#543a48"
+    ["bgreen"]="#425047"
     ["bmagenta"]="#bb9af7"
-    ["bred"]="#ff9e64"
+    ["bred"]="#514045"
     ["bwhite"]="#787c99"
-    ["byellow"]="#e0af68"
+    ["byellow"]="#4d4c43"
   )
   ;;
 esac

@@ -7,7 +7,7 @@ case $SELECTED_THEME in
   declare -A THEME=(
     ["background"]="#2E383D"
     ["foreground"]="#d8caac"
-    ["black"]="#414868"
+    ["black"]="#414B50"
     ["blue"]="#83b6af"
     ["cyan"]="#87c095"
     ["green"]="#a7c080"

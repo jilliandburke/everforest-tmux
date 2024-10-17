@@ -3,9 +3,9 @@
 SELECTED_THEME="$(tmux show-option -gv @everforest-tmux_theme)"
 
 case $SELECTED_THEME in
-"medium")
+"hard")
   declare -A THEME=(
-    ["background"]="#323d43"
+    ["background"]="#2E383D"
     ["foreground"]="#d8caac"
     ["black"]="#414868"
     ["blue"]="#83b6af"
@@ -16,14 +16,14 @@ case $SELECTED_THEME in
     ["white"]="#a9b1d6"
     ["yellow"]="#e0af68"
 
-    ["bblack"]="#414868"
-    ["bblue"]="#3a515d"
+    ["bblack"]="#2e383c"
+    ["bblue"]="#384b55"
     ["bcyan"]="#543a48"
-    ["bgreen"]="#425047"
+    ["bgreen"]="#3c4841"
     ["bmagenta"]="#bb9af7"
-    ["bred"]="#514045"
+    ["bred"]="#4c3743"
     ["bwhite"]="#787c99"
-    ["byellow"]="#4d4c43"
+    ["byellow"]="#45443c"
   )
   ;;
 

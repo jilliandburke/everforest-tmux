@@ -20,7 +20,7 @@ RESET="#[fg=${THEME[foreground]},bg=${THEME[background]},nobold,noitalics,nounde
 tmux set -g mode-style "fg=${THEME[bgreen]},bg=${THEME[bblack]}"
 
 tmux set -g message-style "bg=${THEME[blue]},fg=${THEME[background]}"
-tmux set -g message-command-style "fg=${THEME[white]},bg=${THEME[black]}"
+tmux set -g message-command-style "fg=${THEME[foreground]},bg=${THEME[background]}"
 
 tmux set -g pane-border-style "fg=${THEME[bblack]}"
 tmux set -g pane-active-border-style "fg=${THEME[blue]}"
@@ -54,7 +54,7 @@ battery_status="#($SCRIPTS_PATH/battery-widget.sh)"
 
 #+--- Bars LEFT ---+
 # Session name
-tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[blue]},bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[bold,nodim]#S "
+tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[green]},bold] #{?client_prefix,󰠠 ,󰤂 }#[bold,nodim]#S "
 
 #+--- Windows ---+
 # Focus

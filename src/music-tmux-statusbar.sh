@@ -14,11 +14,11 @@ fi
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $CURRENT_DIR/themes.sh
 
-ACCENT_COLOR="${THEME[blue]}"
-SECONDARY_COLOR="${THEME[background]}"
-BG_COLOR="${THEME[background]}"
+ACCENT_COLOR="${THEME[bgreen]}"
+SECONDARY_COLOR="${THEME[bblue]}"
+BG_COLOR="${THEME[blue]}"
 BG_BAR="${THEME[background]}"
-TIME_COLOR="${THEME[black]}"
+TIME_COLOR="${THEME[blue]}"
 
 if [[ $1 =~ ^[[:digit:]]+$ ]]; then
   MAX_TITLE_WIDTH=$1
@@ -37,7 +37,7 @@ if command -v playerctl >/dev/null; then
     STATUS="paused"
   fi
 
-  TITLE=$(echo "$PLAYER_STATUS" | cut -d';' --fields=4)
+  TITLE=$(echo "#[fg=$TIME_COLOR]$PLAYER_STATUS" | cut -d';' --fields=4)
   DURATION=$(echo "$PLAYER_STATUS" | cut -d';' --fields=2)
   POSITION=$(echo "$PLAYER_STATUS" | cut -d';' --fields=3)
 
@@ -91,7 +91,7 @@ if [ -n "$TITLE" ]; then
 
   # Only show the song title if we are over $MAX_TITLE_WIDTH characters
   if [ "${#OUTPUT}" -ge $MAX_TITLE_WIDTH ]; then
-    OUTPUT="$PLAY_STATE ${TITLE:0:$MAX_TITLE_WIDTH-1}…"
+    OUTPUT="$PLAY_STATE #[fg=$TIME_COLOR]${TITLE:0:$MAX_TITLE_WIDTH-1}…"
   fi
 else
   OUTPUT=''
@@ -116,9 +116,10 @@ else
   O="$OUTPUT"
 
   if [ $PROGRESS -le $TIME_INDEX ]; then
-    echo "#[nobold,fg=$BG_COLOR,bg=$ACCENT_COLOR]${O:0:PROGRESS}#[fg=$ACCENT_COLOR,bg=$BG_BAR]${O:PROGRESS:TIME_INDEX} #[fg=$TIME_COLOR,bg=$BG_BAR]$TIME "
+    echo "#[nobold,fg=$BG_COLOR,bg=$ACCENT_COLOR]${O:0:PROGRESS}#[fg=$SECONDARY_COLOR,bg=$BG_BAR]${O:PROGRESS:TIME_INDEX} #[fg=$SECONDARY_COLOR,bg=$BG_BAR]$TIME "
+
   else
     DIFF=$((PROGRESS - TIME_INDEX))
-    echo "#[nobold,fg=$BG_COLOR,bg=$ACCENT_COLOR]${O:0:TIME_INDEX} #[fg=$BG_BAR,bg=$ACCENT_COLOR]${OUT:TIME_INDEX:DIFF}#[fg=$TIME_COLOR,bg=$BG_BAR]${OUT:PROGRESS}"
+    echo "#[nobold,fg=$BG_COLOR,bg=$ACCENT_COLOR]${O:0:TIME_INDEX} #[fg=$TIME_COLOR,bg=$ACCENT_COLOR]${OUT:TIME_INDEX:DIFF}#[fg=$SECONDARY_COLOR,bg=$BG_BAR]${OUT:PROGRESS}"
   fi
 fi

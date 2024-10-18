@@ -12,10 +12,11 @@ if [ "$SHOW_MUSIC" != "1" ]; then
 fi
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source $CURRENT_DIR/themes.sh
+source "$CURRENT_DIR"/themes.sh
 
 ACCENT_COLOR="${THEME[bgreen]}"
-SECONDARY_COLOR="${THEME[bblue]}"
+# TODO - Add this color somewhere in the actual theme file
+SECONDARY_COLOR="#445c69"
 BG_COLOR="${THEME[blue]}"
 BG_BAR="${THEME[background]}"
 TIME_COLOR="${THEME[blue]}"
@@ -57,7 +58,7 @@ elif command -v nowplaying-cli >/dev/null; then
   declare -A NPCLI_VALUES
   for ((i = 0; i < ${#NPCLI_PROPERTIES[@]}; i++)); do
     # Handle null values
-    [ "${NPCLI_OUTPUT[$i]}" = "null" ] && NPCLI_OUTPUT[$i]=""
+    [ "${NPCLI_OUTPUT[$i]}" = "null" ] && NPCLI_OUTPUT[i]=""
     NPCLI_VALUES[${NPCLI_PROPERTIES[$i]}]="${NPCLI_OUTPUT[$i]}"
   done
   if [ -n "${NPCLI_VALUES[playbackRate]}" ] && [ "${NPCLI_VALUES[playbackRate]}" -gt 0 ]; then
@@ -77,7 +78,7 @@ fi
 
 # Calculate the progress bar for sane durations
 if [ -n "$DURATION" ] && [ -n "$POSITION" ] && [ "$DURATION" -gt 0 ] && [ "$DURATION" -lt 3600 ]; then
-  TIME="[$(date -d@$POSITION -u +%M:%S) / $(date -d@$DURATION -u +%M:%S)]"
+  TIME="[$(date -d@"$POSITION" -u +%M:%S) / $(date -d@"$DURATION" -u +%M:%S)]"
 else
   TIME="[--:--]"
 fi
@@ -90,7 +91,7 @@ if [ -n "$TITLE" ]; then
   OUTPUT="$PLAY_STATE $TITLE"
 
   # Only show the song title if we are over $MAX_TITLE_WIDTH characters
-  if [ "${#OUTPUT}" -ge $MAX_TITLE_WIDTH ]; then
+  if [ "${#OUTPUT}" -ge "$MAX_TITLE_WIDTH" ]; then
     OUTPUT="$PLAY_STATE #[fg=$TIME_COLOR]${TITLE:0:$MAX_TITLE_WIDTH-1}…"
   fi
 else
@@ -115,7 +116,7 @@ else
   PROGRESS=$((OUTPUT_LENGTH * PERCENT / 100))
   O="$OUTPUT"
 
-  if [ $PROGRESS -le $TIME_INDEX ]; then
+  if [ $PROGRESS -le "$TIME_INDEX" ]; then
     echo "#[nobold,fg=$BG_COLOR,bg=$ACCENT_COLOR]${O:0:PROGRESS}#[fg=$SECONDARY_COLOR,bg=$BG_BAR]${O:PROGRESS:TIME_INDEX} #[fg=$SECONDARY_COLOR,bg=$BG_BAR]$TIME "
 
   else
